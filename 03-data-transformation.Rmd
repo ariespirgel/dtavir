@@ -1,0 +1,328 @@
+---
+title: "Data Transformation"
+output:
+  html_document:
+    toc: true
+---
+
+# Data Transformation
+
+- Why start with a scatterplot? 
+- Most other charts require transformation. For example, calculate:
+    - means
+    - sums
+    - min / max
+    - standard deviations
+    - ...
+- ggplot (can) do some data transformation, but better to do it separately.
+- The tidyverse package for data transformation is dplyr.
+
+- dplyr has five primary verbs:
+    - `select()`: Pick variables by their names.
+    - `arrange()`: Reorder rows.
+    - `filter()`: Pick observations by their values.
+    - `mutate()`: Create new variables.
+    - `summarize()`: Collapse many values down to a single summary.
+
+- 1st argument of each verb is dataframe, second is what to do with it.
+
+## Code Together: Load Packages & View Data
+
+```{r setup, include = FALSE}
+
+knitr::opts_chunk$set(echo = TRUE, message = FALSE, warning = FALSE)
+
+library(tidyverse)
+library(vized)
+
+```
+
+
+- Let's take a look at the data.
+
+```{r}
+
+ipeds_sat
+
+```
+
+- Dataset for this section contains SAT scores for first-time in college students. Columns include:
+    - unit_id
+    - institution_name
+    - percentile (25th or 75th)
+    - sat_ebrw
+    - sat_math
+
+## select()
+
+### Code Together: select()
+
+- Let's start with `select()`
+- We give it the data set, and the columns we want included.
+
+```{r}
+
+select(ipeds_sat, unit_id, institution_name)
+
+select(ipeds_sat, unit_id, percentile, sat_ebrw)
+```
+
+### Your Turn: select()
+
+- Use select() to limit the `ipeds_sat` dataset to the `percentile` and `sat_math` columns.
+
+```{r}
+
+select(ipeds_sat, percentile, sat_math)
+
+```
+
+- `select()` contains many helper functions.
+- Let's check out a few of them.
+
+```{r}
+
+select(ipeds_sat, institution_name:sat_ebrw) 
+
+select(ipeds_sat, contains("institution")) 
+
+select(ipeds_sat, starts_with("sat"))
+
+```
+
+### Pop Quiz: select()
+
+- Which column(s) do you think the code below selects?
+
+```{r}
+
+select(ipeds_sat, ends_with("e"))
+
+```
+
+## arrange()
+
+### Code Togeher: arrange()
+
+- `arrange()` sorts data.
+- Again, the first argument is the data frame, followed by columns you want sorted.
+- Let's sort from lowest to highest `sat_ebrw`.
+
+```{r}
+
+arrange(ipeds_sat, sat_ebrw)
+
+```
+
+- Now highest to lowest.
+
+```{r}
+
+arrange(ipeds_sat, desc(sat_ebrw))
+
+```
+
+- Now `arrange()` by multiple columns.
+
+```{r}
+
+arrange(ipeds_sat, sat_math, sat_ebrw)
+
+```
+
+### Your Turn: arrange()
+
+- Now I'd like you to arrange by `percentile` and `sat_math` (highest to lowest), `sat_ebrw` (highest to lowest).
+- Which school is on top?
+
+```{r}
+
+arrange(ipeds_sat, percentile, desc(sat_math), desc(sat_ebrw))
+
+```
+
+## filter()
+
+### Code Togther: filter()
+
+- Pick observations (rows) by their values.
+- For example, where `sat_math` is greater than 700.
+- First argument is data, next are logical test(s).
+- Logical tests in R include:
+    - x < y	Less than
+    - x > y	Greater than
+    - x == y Equal to
+    - x <= y Less than or equal to
+    - x >= y Greater than or equal to
+    - x != y Not equal to
+- Let's try some out
+
+```{r}
+
+1 > 5
+
+2 < 11
+
+x <- 9
+
+x == 9
+
+
+```
+
+- Remember, it works with characters too! But don't forget quotes!
+
+```{r}
+
+"apple" == "apple"
+
+"apple" == "banana"
+
+```
+
+### Pop Quiz: filter()
+
+- `filter()` returns observations where logical criteria are true
+- What do you think the following returns?
+
+```{r}
+
+filter(ipeds_sat, institution_name == "Florida State University")
+
+```
+
+- How about this one?
+
+```{r}
+
+filter(ipeds_sat, sat_ebrw < 500)
+
+```
+
+### Your Turn: filter() On One Criterion
+
+- Now I'd like you to use filter to find all of the rows where `sat_math` is 800.
+
+```{r}
+
+filter(ipeds_sat, sat_math == 800)
+
+```
+
+### Code Together: filter() Mulitple Logical Criteria
+
+- What about multiple logical criteria?
+- For example, `sat_ebrw` is greater than 600 AND `sat_math` is greater than 600?
+- Boolean oeprators include: 
+    - & (and)
+    - | (or)
+    - ! (not)
+    - () (group tests)
+  
+
+```{r}
+
+filter(ipeds_sat, institution_name == "Florida State University" & percentile == "75th")
+
+```
+
+
+
+### Your Turn: filter() On Multiple Logical Criteria
+
+- Please `filter()` for rows where `percentile` is 25th, `sat_ebrw` is greater than or equal to 720, and `sat_math` is greater than or equal to 720. 
+- How many schools meet all of these criteria?
+
+```{r}
+filter(ipeds_sat, percentile == "25th" & sat_ebrw >= 720 & sat_math >= 720)
+```
+
+
+## summarize()
+
+### Code Together: summarize()
+
+- `summarize()` computes tables of summaries.
+- Answer questions such as "What is the...":
+    - mean of x.
+    - standard deviation of x.
+    - frequency of x.
+- Let's find the mean and standard deviation of `sat_ebrw`.
+    
+```{r}
+summarize(ipeds_sat,
+          mean_sat_ebrw = mean(sat_ebrw, na.rm = TRUE),
+          sd_sat_ebrw = sd(sat_ebrw, na.rm = TRUE)
+)
+
+```
+
+### Your Turn: summarize()
+
+- Using `summarize()`, instead of finding mean values with the `mean()` function, I'd like you to use the `min()` and `max` functions to find the minimum and maximum values for `sat_math`.
+
+```{r}
+summarize(ipeds_sat,
+          min_sat = min(sat_math, na.rm = TRUE),
+          max_sat = max(sat_math, na.rm = TRUE)
+)
+```
+
+## mutate()
+
+### Code Together: mutate()
+
+- `mutate()` adds new variables to your dataset.
+- Let's do the following: 
+    - Make a new column that is the sum of  of `sat_ebrw` and `sat_math`.
+    - Make a new column that is the same as `institution_name` but all lowercase.
+
+```{r}
+
+mutate(ipeds_sat, 
+       sat_total = sat_ebrw + sat_math,
+       name_lower = tolower(institution_name))
+
+```
+
+
+### Your Turn: mutate()
+
+- Using `mutate`,  I'd like you to create a  new column that computes the average of `sat_ebrw` and `sat_math`. Hint: When dividing by 2, careful with your parentheses!
+    
+```{r}
+
+mutate(ipeds_sat,
+       sat_mean = (sat_math + sat_ebrw) / 2) 
+
+```
+
+## What's Next?
+
+- What if you wanted create a new column with `mutate()` that is the average of `sat_math` and `sat_ebrw`, `arrange()` the results in descending order,  and `select()` relevant ones?
+- We can try two days based on what you already know, but in the next section we are going to learn a better way.
+- Let's talk about what's wrong with each.
+
+```{r}
+
+# first way
+select(arrange(mutate(ipeds_sat,
+      sat_mean = (sat_math + sat_ebrw) / 2),
+desc(sat_mean)),
+institution_name, percentile, sat_mean)
+
+# second way
+my_data <- mutate(ipeds_sat,
+                  sat_mean = (sat_math + sat_ebrw) / 2) 
+
+my_data <- arrange(my_data, desc(sat_mean))
+
+select(my_data, institution_name, percentile, sat_mean)
+
+
+
+
+
+```
+
+## Your Turn: Navigate to Next Section

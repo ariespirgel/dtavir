@@ -1,0 +1,209 @@
+---
+title: "Introduction"
+output:
+  html_document:
+    toc: true
+---
+
+# Welcome
+
+- About you
+- About me
+
+## Who Is This Workshop For?
+
+- Why a workshop?
+    - Help you get past initial barriers.
+    - Misplaced comma shouldnt keep you from learning R.
+    - Provide foundation for going further on your own.
+- No coding experience required.
+- Will learn to transform and visualize data in R.
+- Will use higher education data (IPEDS).
+
+## Writing Code
+
+- This is an RMarkdown document.
+- Code (gray areas) and regular text are mixed (white areas).
+- The gray areas, called code chunks, can be run by clicking the green arrows on top left of chunk.
+
+## Code Together: Load Packages
+
+- Click the green arrow in the code chunk below to load packages.
+
+```{r setup, include = FALSE}
+
+knitr::opts_chunk$set(echo = FALSE, warning = FALSE, message = FALSE)
+
+library(tidyverse)
+library(vized)
+
+```
+
+- Great, you just loaded two R packages we'll be using. More on what a package is in the next section.
+- Another way to run code is to highlight the specific line(s) of code you want to run and press Ctrl + Enter.
+
+## Code Together: Run code below with Ctrl + Enter
+
+
+```{r math}
+
+4 + 2
+
+```
+
+## Your Turn: Update the points.
+
+- I'd like you to:
+    1. Run the code in the gray box below and see what it does.
+    2. Change the color of the points and rerun the code.
+    3. Alpha can range from 0 to 1. Experiment with changing it and rerunning the code. What does alpha do?
+
+```{r, base_chart}
+
+ggplot(data = ipeds_coordinates) +
+  geom_point(aes(x = longitude, y = latitude), 
+             color = "green", 
+             alpha = .9) 
+
+```
+
+- Things will get more difficult, but it doesn't have to be that intimidating!
+
+## Structure of this Workshop
+
+- The idea is to be challenged.
+    - Benefits of testing (even if you don't know the answer)
+- Three main types of participation throughout workshop:
+    - Code Together
+    - Your Turn
+    - Pop quizzes
+
+## Brief Introduction to R
+
+### Why R (or, Why Code)?
+
+- Unconstrained by software.
+- You create text:
+    - Can be reused.
+    - Can be read by humans.
+- Scaleable.
+- No copying and pasting from one software to another.
+- It's free!
+
+### R vs. RStudio
+
+- R is a free, open-source language.
+- RStudio is a company that develops open source source and sells products that facilitate its use.
+- The IDE you are using is RStudio.
+
+### RMarkdown
+
+- Mix code and text.
+- Code is in gray boxes, regular text in white.
+- Insert a code chunk (i.e., gray boxes).
+- Notice the format and the back quotes, and what happens if that changes.
+- Naming chunks.
+- Comments.
+- Why RMarkdown?
+
+### Your Turn: Knit your document
+
+- What happens when you "Knit to HTML"? (see button at top of RStudio)
+
+### Code Together: R Basics
+
+- Values
+
+```{r values}
+
+12
+
+"Florida" 
+
+```
+
+- Objects
+    1. A name without quotes.
+    2. <- 
+    3. Value, data, etc.
+
+```{r objects}
+
+x <- 22/7
+
+x
+
+x / 2
+
+```
+
+- Functions
+    1. A name without quotes
+    2. Parentheses
+    3. Function arguments
+- Let's try the `round()` function.
+
+```{r functions}
+
+round(x, digits = 2)
+
+```
+
+### Pop Quiz: Which one of these is a number?
+
+- 1    
+- "1"    
+- "one"    
+- one
+
+### Pop Quiz: Which on of these will work?
+
+Suppose: one <- 1
+
+- log(1)    
+- log("1")    
+- log("one")    
+- log(one)
+
+### Recognizing Problems
+
+- + sign in console
+- Red x's in RStudio
+- Error messages
+
+```{r errors, error = TRUE}
+
+round(6.4
+      
+nchar("supercalifragilisticexpialidocious)
+
+"1" + "2"
+
+
+```
+
+
+### R packages and the tidyverse (https://www.tidyverse.org/)
+
+- Many functions come with R when you download it (e.g., `round()`, `log()`)
+- "An R package is a collection of functions, data, and documentation that extends the capabilities of base R." - R for Data Science
+- To use a package, you have to do the following:
+    - `install.packages("pacakgename")`: this only has to be done once.
+    - `library(pacakgename)`: every time you open a new session of R and want to use package.
+- This workshop focuses ont the tidyverse package, which is a collection of packages, including:
+    - ggplot2
+    - dplyr
+    - ...
+- Rather than install and load separately, you can use: 
+    - `install.packages("tidyverse")`
+    - `library(tidyverse)`
+- Why the tidyverse?
+- Many ways to get to same result!
+
+## Conclusion
+
+- Many ways to get same result. This workshop focuses on tidyverse.
+- The answer to your question is out there:StackOverflow, blogs, message boards, free books, etc.
+- Struggling is not only OK, it's encouraged!
+
+## Your Turn: Navigate to next section.

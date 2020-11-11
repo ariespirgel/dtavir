@@ -1,0 +1,18 @@
+---
+title: "Your Turn!"
+output: html_document
+---
+
+# Your Turn: Explore the ipeds_salary data
+
+- Use the skills you've learn to make a summary of the `ipeds_salary` data and/or a chart of it.
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(echo = TRUE, warning = FALSE, message = FALSE)
+
+library(tidyverse)
+library(vized)
+library(scales)
+library(ggthemes)
+
+```

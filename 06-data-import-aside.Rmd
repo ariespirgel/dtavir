@@ -1,0 +1,41 @@
+---
+title: "Importing Data (An Aside)"
+output:
+  html_document:
+    toc: true
+---
+
+# Importing Data
+
+- So far have been using data that is part of packages.
+- Of course, at some point you'll have your own data.
+
+```{r setup, include = FALSE}
+
+knitr::opts_chunk$set(echo = FALSE, warning = FALSE, message = FALSE)
+
+library(tidyverse)
+library(readxl)
+
+```
+
+```{r}
+# import CSV 
+sector_csv <- read_csv("data-processed/ipeds-sector.csv")
+
+# import Excel
+sector_excel <- read_excel("data-processed/ipeds-sector.xlsx")
+```
+
+- Other import functions (may need to dowload other packages):
+  - read_tsv: tab separated
+  - read_delim: general delimited
+  - read_fwf: fixed with
+  - read_sas: SAS
+  - read_sav: SPSS
+  - read_dta: Stata
+  - ...
+- Most have `write_*` analogs.
+- Why do the paths above work (e.g., as opposed to using "users/spirgel/desktop...")?
+  - Absolute vs. Relative Paths
+  - R projects

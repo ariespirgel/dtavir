@@ -1,0 +1,109 @@
+---
+title: "Grouping Your Data"
+output:
+  html_document:
+    toc: true
+---
+
+
+# group_by()
+
+## Code Together: Load Packages & View ipeds_distance
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(echo = TRUE, message = FALSE, warning = FALSE)
+
+library(tidyverse)
+library(vized)
+
+```
+
+- In this section we're going to explore the `ipeds_distance` dataset.
+
+```{r, eval = FALSE}
+
+ipeds_distance %>% 
+  View()
+
+```
+
+- Brief Aside: When you aren't sure what a function does, use `?`. It works for datasets that are part of packages also.
+
+```{r}
+
+?ipeds_distance
+
+```
+
+- Based on what we've learned, there are lots of things we can do with this data. For example, calculate total headcount.
+
+```{r}
+
+ipeds_distance %>% 
+  summarize(total = sum(headcount))
+
+```
+
+## Code Together: Introducing group_by()
+
+- But what if want to know the totals by `distance_type` or `level`, or `distance_type` AND `level`?
+- That's where `group_by()` comes in.
+- Let's try it by `distance_type`.
+
+```{r}
+
+ipeds_distance %>% 
+  group_by(distance_type, level) %>% 
+  summarize(total = sum(headcount)) %>% 
+  group_by(level) %>% 
+  mutate(total_by_level = sum(total))
+
+```
+
+- `group_by()` splits the results by the columns that you group by.
+- How about `level` and `distance_type`?
+- `group_by()` can be used with any of the five `dplyr` verbs we learned (other than `select`).
+- Let's use `mutate()` to include a column with total by `level`.
+
+## Your Turn: group_by() & summarize()
+
+- Now I'd like you to take the `ipeds_distance` data set and combine with the pipe, `group_by()`, and `summarize()` to find the mean headcount by `level` and `distance_type`.
+- What is mean headcount for graduate, all_distance students?
+
+```{r}
+ipeds_distance %>% 
+  group_by(level, distance_type) %>% 
+  summarize(mean_n = mean(headcount))
+```
+
+## Your Turn: Fill in the Blanks.
+
+- Now I'd like you to do the following on the `ipeds_distance` dataset:
+    1. Use `group_by()` and `summarize()` to calculate total headcount by `year`, `level`, and `distance_type`.
+    2. Use `filter()` to get only the rows where `year` is equal to `2018`.
+    3. Use `group_by()` again to group the data by `level`.
+    4. Use `mutate()` to add a column that contains total headcount by `level`.
+    5. Use `mutate()` again that adds a column that divides the column you created in Step 1 by the column you created in Step 4.
+    
+Don't forget to remove the underscore lines!
+
+    
+What proportion of undergraduate students took all distance education courses in 2018?
+
+```{r, eval = FALSE}
+
+ipeds_distance %>% 
+  group_by(year, level, _______) %>% 
+  summarize(total = sum(______)) %>% 
+  filter(year == 2018) %>% 
+  group_by(_______) %>% 
+  mutate(total_by_level = sum(total),
+         prop = total / total_by_level) %>% 
+  ungroup() %>% 
+  arrange(desc(_______))
+
+```
+
+- Get in the habit of using `ungroup()`
+
+## Your Turn: Navigate to Next Section

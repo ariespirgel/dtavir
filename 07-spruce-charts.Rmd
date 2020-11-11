@@ -1,0 +1,181 @@
+---
+title: "Graphics for Communication"
+output: html_document
+---
+
+# Improving the Look of Your Charts
+
+- Exploring data vs. communicating data.
+
+## Code Together: Load Packages & View Data
+
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(echo = TRUE, warning = FALSE, message = FALSE)
+
+library(tidyverse)
+library(vized)
+library(scales)
+library(ggthemes)
+
+```
+
+- In this section, we will be using the `ipeds_salary` data.
+
+```{r}
+
+ipeds_salary %>% 
+  View()
+
+```
+
+
+## Your Turn: Summarize and Plot a Bar Chart
+
+- First, I'd like you to create the following chart from the `ipeds_salary` dataset:
+    - Use `mutate()` to create a new column that finds divides `salary` by `headcount`.
+    - Use `summarize()` to find the mean of your new column, grouped by `sector_description` (Hint: There is a function called `mean()`.
+    - Plot the results as a bar chart (using `geom_col()`), with the mean salary you calculated on the x-axis, and `sector_description` on the y-axis.
+    - Does anything about the way the results are plotted surprise you?
+
+```{r}
+
+ipeds_salary %>% 
+  mutate(mean_salary = salary / headcount) %>% 
+  group_by(sector_description) %>% 
+  summarize(mean = mean(mean_salary)) %>% 
+  ungroup() %>% 
+  ggplot(aes(x = mean, y = sector_description)) +
+  geom_col()
+
+
+```
+
+## Your Turn: Add Labels
+
+- Below is the code from the chart we just created, but notice how there is a new layer at the end for `labs()`.
+- This layer adds labels to the charts. I filled in the x label, but now I'd like you to complete the reamining ones. 
+- What does each one do?
+
+```{r}
+
+ipeds_salary %>% 
+  mutate(mean_salary = salary / headcount) %>% 
+  group_by(sector_description) %>% 
+  summarize(mean = mean(mean_salary)) %>% 
+  ungroup() %>% 
+  ggplot(aes(x = mean, y = sector_description)) +
+  geom_col() +
+  labs(x = "Mean Salary", y = "   ", 
+       title = "  ",
+       subtitle = "  ",
+       caption = "  "
+       )
+
+
+```
+
+## Your Turn: Add a Theme
+
+- With chart we just created, let me show you how to add a theme.
+- First, copy and paste the code for the chart we just created below.
+- Here's how you add a theme:
+
+```{r}
+
+ipeds_salary %>% 
+  mutate(mean_salary = salary / headcount) %>% 
+  group_by(sector_description) %>% 
+  summarize(mean = mean(mean_salary)) %>% 
+  ungroup() %>% 
+  ggplot(aes(x = mean, y = sector_description)) +
+  geom_col() + 
+  labs(x = "Mean Salary", y = "Sector", 
+       title = "Average Employee Salary by Sector",
+       subtitle = "Full-Time Nonmedical/Noninstructional",
+       caption = "Source: IPEDS Data Center"
+       ) +
+  theme_minimal()
+
+```
+
+- Now I'd like to try and some different themes and choose one you like.
+
+## Code Together: Reordering the Bars
+
+- Why are the bars in the order they are?
+- Reorder the levels based on mean salary.
+
+```{r}
+
+ipeds_salary %>% 
+  mutate(mean_salary = salary / headcount) %>% 
+  group_by(sector_description) %>% 
+  summarize(mean = mean(mean_salary)) %>% 
+  ungroup() %>% 
+  mutate(sector_description = fct_reorder(sector_description, mean)) %>% 
+  ggplot(aes(x = mean, y = sector_description)) +
+  geom_col() + 
+  labs(x = "Mean Salary", y = "Sector", 
+       title = "Average Employee Salary by Sector",
+       subtitle = "Full-Time Nonmedical/Noninstructional",
+       caption = "Source: IPEDS Data Center"
+       ) +
+  theme_minimal()
+
+```
+
+## Code Together: Change the Bar Color
+
+- Copy and paste code from above here.
+- Regular, english colors or hex colors.
+- Why is `fill` outside of `aes()` instead of inside of `aes()`?
+
+```{r}
+
+ipeds_salary %>% 
+  mutate(mean_salary = salary / headcount) %>% 
+  group_by(sector_description) %>% 
+  summarize(mean = mean(mean_salary)) %>% 
+  ungroup() %>% 
+  mutate(sector_description = fct_reorder(sector_description, mean)) %>% 
+  ggplot(aes(x = mean, y = sector_description)) +
+  geom_col(fill = "blue") + 
+  labs(x = "Mean Salary", y = "Sector", 
+       title = "Average Employee Salary by Sector",
+       subtitle = "Full-Time Nonmedical/Noninstructional",
+       caption = "Source: IPEDS Data Center"
+       ) +
+  theme_minimal()
+
+```
+
+## Code Together: Changing the Scale
+
+- Use the scales package to change the y-axis to $.
+
+```{r}
+
+ipeds_salary %>% 
+  mutate(mean_salary = salary / headcount) %>% 
+  group_by(sector_description) %>% 
+  summarize(mean = mean(mean_salary)) %>% 
+  ungroup() %>% 
+  mutate(sector_description = fct_reorder(sector_description, mean)) %>% 
+  ggplot(aes(x = mean, y = sector_description)) +
+  geom_col(fill = "blue") + 
+  labs(x = "Mean Salary", y = "Sector", 
+       title = "Average Employee Salary by Sector",
+       subtitle = "Full-Time Nonmedical/Noninstructional",
+       caption = "Source: IPEDS Data Center"
+       ) +
+  theme_minimal() +
+  scale_x_continuous(label = dollar)
+
+```
+
+- There is no limit to what you can do!
+
+## Your Turn: Navigate to Next Section
+
+

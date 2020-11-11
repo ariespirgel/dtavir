@@ -1,0 +1,245 @@
+---
+title: "Making A Scatterplot"
+output:
+  html_document:
+    toc: true
+---
+
+# Scatterplots
+
+## Getting Started
+
+### Code Together: Load Package & View Data
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(echo = TRUE, warning = FALSE, message = FALSE)
+
+library(tidyverse)
+library(vized)
+
+```
+
+- About the vized R package and other data packages.
+- In this section, we will be exploring the `ipeds_funnel` dataset.
+- Let's view the dataset, of which there are many ways of doing so.
+
+```{r view_data}
+
+ipeds_funnel
+
+```
+
+For four-year public and private-not-for profit schools, the dataset contains the following columns:
+    - unit_id
+    - institution_name
+    - sector_description
+    - state_description
+    - ivy_plus_exchange
+    - applicants_total
+    - admitted_total
+    - enrolled_total
+    - admit_rate
+    - yield_rate
+    
+### Code Together: applicants_total vs. yield_rate
+
+- The tidyverse package for visualizing data is ggplot2.
+- First chart: visualize `applicants_total` vs. `yield_rate`
+- What do you expect the association to be?
+
+
+```{r base_chart}
+
+ggplot(data = ipeds_funnel) +
+  geom_point(mapping = aes(x = applicants_total, y = yield_rate)) 
+
+```
+
+- Before addressing many problems of this chart, let's focus on the code itself.
+This code contains the most basic elements you will have in a chart, namely:
+  1. Initialize plot with `ggplot()` and tell data your plotting, in this case `ipeds_funnel`. 
+  2. The geom you want to include, which describes the type of plot.
+  3. How the elements of your data are **aes**thically mapped to the chart. 
+  4. Layers of the chart are added with the `+` sign.
+
+- The following template forms the base of the charts you will make in ggplot:
+
+```{r template, eval = FALSE, echo = TRUE}
+
+ggplot(data = <DATA>) + 
+  <GEOM_FUNCTION>(mapping = aes(<MAPPINGS>))
+
+```
+
+- This forms the base chart, and you can continue adding things to it, with new elements separated by a the `+` sign
+
+### Code Together: Update the X-Axis
+
+- What's wrong with the original chart and what features of it make it hard to detect any trends?
+
+```{r log_scale}
+
+ggplot(data = ipeds_funnel) +
+  geom_point(mapping = aes(x = applicants_total, y = yield_rate)) +
+  scale_x_log10()
+
+```
+
+### Pop Quiz: How Would You Log Transform the Y-Axis?
+
+- Any guesses as to how we would transform the y-axis to a log scale? Try it out and see if it works.
+- Going forward, it makes the most sense to leave just the axis on log scale, so let's do that.
+
+## Finding Patterns in Data
+
+### Pop Quiz: Schools in Upper Right
+
+- General negative association, but a few schools on the upper right.
+- Do you have a hypothesis about those schools?
+    - View your dataset to determine what variables could test your hypothesis.
+    - BONUS: What visual elements could we add to test your hypothesis?
+
+```{r color_aes}
+
+ggplot(data = ipeds_funnel) +
+  geom_point(mapping = aes(x = applicants_total, y = yield_rate, 
+                           color = ivy_plus_exchange)) +
+  scale_x_log10()
+
+```
+
+- Aesthetics you can add might include:
+    - `color`
+    - `size`
+    - `shape`
+    
+### Your Turn: Try different aesthetics
+    
+-  Play around with the code below and add different variables to `color`, `size`, and `shape`. What do you notice? What happens with discrete vs. continuous variables? What happens when you add more than one aesthetic at a time?
+
+```{r aes}
+
+ggplot(data = ipeds_funnel) +
+  geom_point(mapping = aes(x = applicants_total, y = yield_rate, 
+                           color = ivy_plus_exchange)) +
+  scale_x_log10()
+
+```
+
+### Code Together: Facet Your Data
+
+- Aesthetics are not the only way to help detect patterns. 
+- Using the facet functions, you can create small multiples.
+- Let's do that with `sector_description` so how IvyPlus schools are distributed across public and private institutions.
+
+
+```{r facet_wrap}
+
+ggplot(data = ipeds_funnel) +
+  geom_point(mapping = aes(x = applicants_total, y = yield_rate, 
+                           color = ivy_plus_exchange)) +
+  scale_x_log10() +
+  facet_wrap(~ sector_description) 
+
+```
+
+### Your Turn: facet_wrap()
+
+- Repeat the chart above, except this time facet your chart by `ivy_plus_exhange` instead of `sector_description`.
+
+### Code Together: facet_grid() 
+
+- `facet_grid()` which creates a matrix of rows and columns of your data.
+- It is best used when you have two discrete variables.
+- Let's try it with `sector_description` and `ivy_plus_exchange`.
+
+
+```{r facet_grid}
+
+ggplot(data = ipeds_funnel) +
+  geom_point(mapping = aes(x = applicants_total, y = yield_rate)) +
+  facet_grid(ivy_plus_exchange ~ sector_description) +
+  scale_x_log10()
+
+```
+
+- Let's make one more adjustment before moving on.
+- Many of the points overlap. Do you remember how to add transparency to the points?
+
+```{r alpha}
+
+ggplot(data = ipeds_funnel) +
+  geom_point(mapping = aes(x = applicants_total, y = yield_rate), 
+             alpha = .25) +
+  facet_grid(ivy_plus_exchange ~ sector_description) +
+  scale_x_log10()
+
+```
+
+- As a bonus, why does does `alpha` go outside of `aes()` instead of inside of it?
+
+## Code Together: Multiple geoms and Local vs. Global
+
+- Back to original chart, where we plotted `applicants_total` against `yield_rate`. 
+- Seems to be a negative trend, but how do we formalize that?
+- How about another `geom`. Let's try `geom_smooth`
+
+```{r multiple_geoms}
+
+ggplot(data = ipeds_funnel) +
+  geom_point(mapping = aes(x = applicants_total, y = yield_rate)) +
+  geom_smooth(mapping = aes(x = applicants_total, y = yield_rate)) +
+  scale_x_log10()  
+
+```
+
+- Confirms negative trend.
+- Gets pulled up by elite institutions.
+- Looking at the code that creates this chart, notice the redundancy?
+- What happens if we put everything inside of `ggplot()` instead?
+
+```{r local_global}
+
+ipeds_funnel %>% 
+  ggplot(mapping = aes(x = applicants_total, y = yield_rate)) +
+  geom_point() +
+  geom_smooth() +
+  scale_x_log10()  
+
+```
+
+- So why ever use local aesthetics? 
+- You may want to supply different or data aesthetics depending on the geom. Let's try an example with the chart above.
+
+## Your Turn: Make a Scatterplot With Multiple Geoms
+
+- Using the `ipeds_funnel` data, make a scatterplot with `geom_point()` that has the following features:
+    - `applicants_total` on the x-axis.
+    - `admitted_total` on the y-axis.
+    - the colors of the points are represented by `sector_description`.
+    - the chart contains a layer for `geom_smooth()`.
+    
+```{r}
+
+ggplot(data = ipeds_funnel, aes(x = applicants_total, y = admitted_total, 
+                                color = sector_description)) +
+  geom_point() +
+  geom_smooth()
+
+```
+
+
+## Conclusion
+
+- If nothing else, remember this template.
+
+```{r template2, eval = FALSE, echo = TRUE}
+
+ggplot(<DATA> ) + 
+  <GEOM_FUNCTION>(mapping = aes(<MAPPINGS>))
+
+```
+
+- We will return to building charts, but first let's learn how to transform data.
+
+## Your Turn: Navigate to next section
