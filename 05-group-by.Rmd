@@ -79,26 +79,25 @@ ipeds_distance %>%
 ## Your Turn: Fill in the Blanks.
 
 - Now I'd like you to do the following on the `ipeds_distance` dataset:
-    1. Use `group_by()` and `summarize()` to calculate total headcount by `year`, `level`, and `distance_type`.
-    2. Use `filter()` to get only the rows where `year` is equal to `2018`.
-    3. Use `group_by()` again to group the data by `level`.
-    4. Use `mutate()` to add a column that contains total headcount by `level`.
-    5. Use `mutate()` again that adds a column that divides the column you created in Step 1 by the column you created in Step 4.
+    1. Use `group_by()` to group the data by `year`, `level`, and `distance_type`.
+    2. Use `summarize()` to find the sum of `headcount`.
+    3. Use `filter()` to get only the rows where `year` is equal to `2018`.
+    4. Use `group_by()` again to group the data by `level`.
+    5. Use `arrange()` to sort the data in descending order by
     
-Don't forget to remove the underscore lines!
+Don't forget to remove the underscores!
 
-    
 What proportion of undergraduate students took all distance education courses in 2018?
 
 ```{r, eval = FALSE}
 
 ipeds_distance %>% 
   group_by(year, level, _______) %>% 
-  summarize(total = sum(______)) %>% 
-  filter(year == 2018) %>% 
+  summarize(total_headcount = sum(______)) %>% 
+  filter(year == ______) %>% 
   group_by(_______) %>% 
-  mutate(total_by_level = sum(total),
-         prop = total / total_by_level) %>% 
+  mutate(total_by_level = sum(total_headcount),
+         prop = total_headcount / total_by_level) %>% 
   ungroup() %>% 
   arrange(desc(_______))
 
@@ -106,4 +105,6 @@ ipeds_distance %>%
 
 - Get in the habit of using `ungroup()`
 
-## Your Turn: Navigate to Next Section
+## Your Turn: Navigate to next section
+
+- Navigate to 06-data-import-aside.Rmd

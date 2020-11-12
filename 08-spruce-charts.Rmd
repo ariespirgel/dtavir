@@ -1,6 +1,8 @@
 ---
 title: "Graphics for Communication"
-output: html_document
+output:
+  html_document:
+    toc: true
 ---
 
 # Improving the Look of Your Charts
@@ -22,7 +24,7 @@ library(ggthemes)
 
 - In this section, we will be using the `ipeds_salary` data.
 
-```{r}
+```{r, eval = FALSE}
 
 ipeds_salary %>% 
   View()
@@ -55,7 +57,9 @@ ipeds_salary %>%
 
 - Below is the code from the chart we just created, but notice how there is a new layer at the end for `labs()`.
 - This layer adds labels to the charts. I filled in the x label, but now I'd like you to complete the reamining ones. 
-- What does each one do?
+- Hint: Run the code before filling in the labels so you know what the chart looks like.
+- Your answer probably won't be the same as everyone else's.
+- What does each argument to `labs()`  do?
 
 ```{r}
 
@@ -177,5 +181,7 @@ ipeds_salary %>%
 - There is no limit to what you can do!
 
 ## Your Turn: Navigate to Next Section
+
+- Navigate to 09-your-turn.Rmd
 
 

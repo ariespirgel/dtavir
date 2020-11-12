@@ -7,15 +7,16 @@ output:
 
 # Other Chart Types
 
-- Remember the  formula for creating charts
+- Remember the  formula for creating charts.
 
-```{r template, eval = FALSE, echo = TRUE}
+```{r template_1, eval = FALSE, echo = TRUE}
 
 ggplot(data = <DATA>) + 
   <GEOM_FUNCTION>(mapping = aes(<MAPPINGS>))
 
 ```
 
+- Ultimately, once you learn this formula, you can make any chart.
 - Unlike scatterplots, here we'll transform data before plotting it.
 
 ## Code Together: Load Packages & Line Charts
@@ -76,6 +77,8 @@ ipeds_distance %>%
 ```
 
 ## Your Turn: Faceted Bar Chart
+
+- First, run code below to show chart.
 
 ```{r}
 
@@ -166,7 +169,7 @@ us_states %>%
 
 - These prinicples can be used to build any type of chart. Always remember:
 
-```{r template, eval = FALSE, echo = TRUE}
+```{r template_2, eval = FALSE, echo = TRUE}
 
 ggplot(data = <DATA>) + 
   <GEOM_FUNCTION>(mapping = aes(<MAPPINGS>))
@@ -176,3 +179,5 @@ ggplot(data = <DATA>) +
 - You may have noticed some of these charts were spruced up.
 
 ## Your Turn: Navigate to Next Section
+
+- Navigate to 08-spruce-charts.Rmd

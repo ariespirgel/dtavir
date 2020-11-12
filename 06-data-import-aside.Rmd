@@ -19,6 +19,8 @@ library(readxl)
 
 ```
 
+## Code Together: Import Data
+
 ```{r}
 # import CSV 
 sector_csv <- read_csv("data-processed/ipeds-sector.csv")
@@ -39,3 +41,7 @@ sector_excel <- read_excel("data-processed/ipeds-sector.xlsx")
 - Why do the paths above work (e.g., as opposed to using "users/spirgel/desktop...")?
   - Absolute vs. Relative Paths
   - R projects
+  
+## Your Turn: Navigate to next section
+
+- Navigate to 07-other-chart-types.Rmd

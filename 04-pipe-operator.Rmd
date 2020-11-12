@@ -118,3 +118,5 @@ ipeds_sat %>%
 - Save time with `%in%`.
 
 ## Your Turn: Navigate to next section
+
+- Navigate to 05-group-by.Rmd

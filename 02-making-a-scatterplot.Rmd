@@ -147,6 +147,17 @@ ggplot(data = ipeds_funnel) +
 
 - Repeat the chart above, except this time facet your chart by `ivy_plus_exhange` instead of `sector_description`.
 
+```{r}
+
+ggplot(data = ipeds_funnel) +
+  geom_point(mapping = aes(x = applicants_total, y = yield_rate, 
+                           color = ivy_plus_exchange)) +
+  scale_x_log10() +
+  facet_wrap(~ ivy_plus_exchange) 
+
+```
+
+
 ### Code Together: facet_grid() 
 
 - `facet_grid()` which creates a matrix of rows and columns of your data.
@@ -235,7 +246,7 @@ ggplot(data = ipeds_funnel, aes(x = applicants_total, y = admitted_total,
 
 ```{r template2, eval = FALSE, echo = TRUE}
 
-ggplot(<DATA> ) + 
+ggplot(<DATA>) + 
   <GEOM_FUNCTION>(mapping = aes(<MAPPINGS>))
 
 ```
@@ -243,3 +254,5 @@ ggplot(<DATA> ) +
 - We will return to building charts, but first let's learn how to transform data.
 
 ## Your Turn: Navigate to next section
+
+- Navigate to 03-data-transformation.Rmd

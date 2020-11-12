@@ -77,6 +77,8 @@ ggplot(data = ipeds_coordinates) +
     - Code Together
     - Your Turn
     - Pop quizzes
+- Look for the headings for participation type.
+- There is a solutions section.
 
 ## Brief Introduction to R
 
@@ -95,6 +97,7 @@ ggplot(data = ipeds_coordinates) +
 - R is a free, open-source language.
 - RStudio is a company that develops open source source and sells products that facilitate its use.
 - The IDE you are using is RStudio.
+- RStudio's four panes.
 
 ### RMarkdown
 
@@ -102,6 +105,7 @@ ggplot(data = ipeds_coordinates) +
 - Code is in gray boxes, regular text in white.
 - Insert a code chunk (i.e., gray boxes).
 - Notice the format and the back quotes, and what happens if that changes.
+- Results appear below the code chunk.
 - Naming chunks.
 - Comments.
 - Why RMarkdown?
@@ -206,4 +210,6 @@ nchar("supercalifragilisticexpialidocious)
 - The answer to your question is out there:StackOverflow, blogs, message boards, free books, etc.
 - Struggling is not only OK, it's encouraged!
 
-## Your Turn: Navigate to next section.
+## Your Turn: Navigate to next section
+
+- Navigate to 02-making-a-scatterplot.Rmd

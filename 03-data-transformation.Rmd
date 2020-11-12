@@ -79,6 +79,9 @@ select(ipeds_sat, percentile, sat_math)
 
 - `select()` contains many helper functions.
 - Let's check out a few of them.
+    - `:`
+    - `contains()`
+    - `starts_with()`
 
 ```{r}
 
@@ -102,7 +105,7 @@ select(ipeds_sat, ends_with("e"))
 
 ## arrange()
 
-### Code Togeher: arrange()
+### Code Together: arrange()
 
 - `arrange()` sorts data.
 - Again, the first argument is the data frame, followed by columns you want sorted.
@@ -320,9 +323,8 @@ my_data <- arrange(my_data, desc(sat_mean))
 select(my_data, institution_name, percentile, sat_mean)
 
 
-
-
-
 ```
 
 ## Your Turn: Navigate to Next Section
+
+- Navigate to 04-pipe-operator.Rmd
