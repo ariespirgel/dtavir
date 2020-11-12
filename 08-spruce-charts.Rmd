@@ -26,8 +26,6 @@ library(ggthemes)
 
 ```{r, eval = FALSE}
 
-ipeds_salary %>% 
-  View()
 
 ```
 
@@ -36,19 +34,11 @@ ipeds_salary %>%
 
 - First, I'd like you to create the following chart from the `ipeds_salary` dataset:
     - Use `mutate()` to create a new column that finds divides `salary` by `headcount`.
-    - Use `summarize()` to find the mean of your new column, grouped by `sector_description` (Hint: There is a function called `mean()`.
+    - Use `summarize()` to find the mean of your new column, grouped by `sector_description` (Hint: There is a function called `mean()`).
     - Plot the results as a bar chart (using `geom_col()`), with the mean salary you calculated on the x-axis, and `sector_description` on the y-axis.
     - Does anything about the way the results are plotted surprise you?
 
 ```{r}
-
-ipeds_salary %>% 
-  mutate(mean_salary = salary / headcount) %>% 
-  group_by(sector_description) %>% 
-  summarize(mean = mean(mean_salary)) %>% 
-  ungroup() %>% 
-  ggplot(aes(x = mean, y = sector_description)) +
-  geom_col()
 
 
 ```
@@ -81,25 +71,11 @@ ipeds_salary %>%
 
 ## Your Turn: Add a Theme
 
+- Copy and paste code from the chart we just created here.
 - With chart we just created, let me show you how to add a theme.
-- First, copy and paste the code for the chart we just created below.
-- Here's how you add a theme:
 
 ```{r}
 
-ipeds_salary %>% 
-  mutate(mean_salary = salary / headcount) %>% 
-  group_by(sector_description) %>% 
-  summarize(mean = mean(mean_salary)) %>% 
-  ungroup() %>% 
-  ggplot(aes(x = mean, y = sector_description)) +
-  geom_col() + 
-  labs(x = "Mean Salary", y = "Sector", 
-       title = "Average Employee Salary by Sector",
-       subtitle = "Full-Time Nonmedical/Noninstructional",
-       caption = "Source: IPEDS Data Center"
-       ) +
-  theme_minimal()
 
 ```
 
@@ -112,69 +88,28 @@ ipeds_salary %>%
 
 ```{r}
 
-ipeds_salary %>% 
-  mutate(mean_salary = salary / headcount) %>% 
-  group_by(sector_description) %>% 
-  summarize(mean = mean(mean_salary)) %>% 
-  ungroup() %>% 
-  mutate(sector_description = fct_reorder(sector_description, mean)) %>% 
-  ggplot(aes(x = mean, y = sector_description)) +
-  geom_col() + 
-  labs(x = "Mean Salary", y = "Sector", 
-       title = "Average Employee Salary by Sector",
-       subtitle = "Full-Time Nonmedical/Noninstructional",
-       caption = "Source: IPEDS Data Center"
-       ) +
-  theme_minimal()
 
 ```
 
 ## Code Together: Change the Bar Color
 
-- Copy and paste code from above here.
+- Copy and paste code from the chart we just created here.
 - Regular, english colors or hex colors.
 - Why is `fill` outside of `aes()` instead of inside of `aes()`?
 
 ```{r}
 
-ipeds_salary %>% 
-  mutate(mean_salary = salary / headcount) %>% 
-  group_by(sector_description) %>% 
-  summarize(mean = mean(mean_salary)) %>% 
-  ungroup() %>% 
-  mutate(sector_description = fct_reorder(sector_description, mean)) %>% 
-  ggplot(aes(x = mean, y = sector_description)) +
-  geom_col(fill = "blue") + 
-  labs(x = "Mean Salary", y = "Sector", 
-       title = "Average Employee Salary by Sector",
-       subtitle = "Full-Time Nonmedical/Noninstructional",
-       caption = "Source: IPEDS Data Center"
-       ) +
-  theme_minimal()
+
 
 ```
 
 ## Code Together: Changing the Scale
 
+- Copy and paste code from the chart we just created here.
 - Use the scales package to change the y-axis to $.
 
 ```{r}
 
-ipeds_salary %>% 
-  mutate(mean_salary = salary / headcount) %>% 
-  group_by(sector_description) %>% 
-  summarize(mean = mean(mean_salary)) %>% 
-  ungroup() %>% 
-  mutate(sector_description = fct_reorder(sector_description, mean)) %>% 
-  ggplot(aes(x = mean, y = sector_description)) +
-  geom_col(fill = "blue") + 
-  labs(x = "Mean Salary", y = "Sector", 
-       title = "Average Employee Salary by Sector",
-       subtitle = "Full-Time Nonmedical/Noninstructional",
-       caption = "Source: IPEDS Data Center"
-       ) +
-  theme_minimal() +
-  scale_x_continuous(label = dollar)
 
 ```
 

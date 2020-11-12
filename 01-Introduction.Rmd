@@ -5,12 +5,14 @@ output:
     toc: true
 ---
 
+Hello! Please click open the "dtavir-workshop.Rproj" in the folder you downloaded before the workshop. Then, in the right pane of RStudio that this opened, click the file called "01-introuction.Rmd". If that worked, you are all set for now!
+
 # Welcome
 
 - About you
 - About me
 
-## Who Is This Workshop For?
+## About This Workshop
 
 - Why a workshop?
     - Help you get past initial barriers.
@@ -19,6 +21,7 @@ output:
 - No coding experience required.
 - Will learn to transform and visualize data in R.
 - Will use higher education data (IPEDS).
+- Live coding, not slides.
 
 ## Writing Code
 
@@ -117,12 +120,10 @@ ggplot(data = ipeds_coordinates) +
 ### Code Together: R Basics
 
 - Values
+    - numeric
+    - character
 
 ```{r values}
-
-12
-
-"Florida" 
 
 ```
 
@@ -133,11 +134,7 @@ ggplot(data = ipeds_coordinates) +
 
 ```{r objects}
 
-x <- 22/7
 
-x
-
-x / 2
 
 ```
 
@@ -149,7 +146,6 @@ x / 2
 
 ```{r functions}
 
-round(x, digits = 2)
 
 ```
 

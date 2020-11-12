@@ -16,10 +16,7 @@ output:
 - What is the first argument of each?
 - When this happens, we can use the `%>%` (pipe) operator.
 
-- At the end of last section, we wanted to do the following:
-    1. Use `mutate()` to create a new column that computes the mean of `sat_ebrw` and `sat_math`.
-    2. Use `arrange()` to sort the data from highest to lowest mean SAT.
-    3. Use `select()` to choose only certain columns.
+
     
 ## Code Together: Load Packages
     
@@ -33,6 +30,11 @@ library(knitr)
 ```
     
 ## Code Together: Pipe Syntax
+
+- At the end of last section, we wanted to do the following:
+    1. Use `mutate()` to create a new column that computes the mean of `sat_ebrw` and `sat_math`.
+    2. Use `arrange()` to sort the data from highest to lowest mean SAT.
+    3. Use `select()` to choose only certain columns.
 
 - Let's see how that would like with the %>%.
     
@@ -64,9 +66,7 @@ Now I'd like you to *use the pipe* on `ipeds_sat` to:
 Hint: The first line should be `ipeds_sat` and your result should contain two `%>%`.
 
 ```{r}
-ipeds_sat %>% 
-  filter(percentile == "75th") %>% 
-  select(institution_name, sat_math) 
+
 ```
 
 
@@ -78,10 +78,6 @@ ipeds_sat %>%
 
 ```{r}
 
-ipeds_sat %>% 
-  filter(percentile == "25th") %>% 
-  ggplot(aes(x = sat_math, y = sat_ebrw)) + 
-  geom_point()
 
 ```
 
@@ -107,12 +103,7 @@ include_graphics("images/sat-three-schools.jpg")
 ```
 
 ```{r}
-ipeds_sat %>% 
-  filter(institution_name == "Florida State University" |
-           institution_name == "University of Florida" |
-           institution_name == "University of Central Florida") %>% 
-  ggplot(aes(x = percentile, y = sat_ebrw, color = institution_name)) +
-  geom_point(size = 6) 
+
 ```
 
 - Save time with `%in%`.

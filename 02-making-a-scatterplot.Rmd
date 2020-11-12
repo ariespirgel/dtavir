@@ -22,10 +22,13 @@ library(vized)
 - About the vized R package and other data packages.
 - In this section, we will be exploring the `ipeds_funnel` dataset.
 - Let's view the dataset, of which there are many ways of doing so.
+    - just print it.
+    - `View()`
+    - `glimpse()`
+
 
 ```{r view_data}
 
-ipeds_funnel
 
 ```
 
@@ -50,10 +53,13 @@ For four-year public and private-not-for profit schools, the dataset contains th
 
 ```{r base_chart}
 
-ggplot(data = ipeds_funnel) +
-  geom_point(mapping = aes(x = applicants_total, y = yield_rate)) 
 
 ```
+
+- Troubleshooting if it didn't work
+    - Balancing your parentheses
+    - `+` on same line
+    - misspellings
 
 - Before addressing many problems of this chart, let's focus on the code itself.
 This code contains the most basic elements you will have in a chart, namely:
@@ -73,15 +79,12 @@ ggplot(data = <DATA>) +
 
 - This forms the base chart, and you can continue adding things to it, with new elements separated by a the `+` sign
 
-### Code Together: Update the X-Axis
+### Code Together: Update the X-Axis to Log Scale
 
 - What's wrong with the original chart and what features of it make it hard to detect any trends?
 
 ```{r log_scale}
 
-ggplot(data = ipeds_funnel) +
-  geom_point(mapping = aes(x = applicants_total, y = yield_rate)) +
-  scale_x_log10()
 
 ```
 
@@ -98,13 +101,10 @@ ggplot(data = ipeds_funnel) +
 - Do you have a hypothesis about those schools?
     - View your dataset to determine what variables could test your hypothesis.
     - BONUS: What visual elements could we add to test your hypothesis?
+- Let's copy and paste our code from above to try it out.
 
 ```{r color_aes}
 
-ggplot(data = ipeds_funnel) +
-  geom_point(mapping = aes(x = applicants_total, y = yield_rate, 
-                           color = ivy_plus_exchange)) +
-  scale_x_log10()
 
 ```
 
@@ -130,16 +130,12 @@ ggplot(data = ipeds_funnel) +
 
 - Aesthetics are not the only way to help detect patterns. 
 - Using the facet functions, you can create small multiples.
-- Let's do that with `sector_description` so how IvyPlus schools are distributed across public and private institutions.
+- Let's do that with `sector_description` to see how IvyPlus schools are distributed across public and private institutions.
+- Copy and paste code from above.
 
 
 ```{r facet_wrap}
 
-ggplot(data = ipeds_funnel) +
-  geom_point(mapping = aes(x = applicants_total, y = yield_rate, 
-                           color = ivy_plus_exchange)) +
-  scale_x_log10() +
-  facet_wrap(~ sector_description) 
 
 ```
 
@@ -149,11 +145,6 @@ ggplot(data = ipeds_funnel) +
 
 ```{r}
 
-ggplot(data = ipeds_funnel) +
-  geom_point(mapping = aes(x = applicants_total, y = yield_rate, 
-                           color = ivy_plus_exchange)) +
-  scale_x_log10() +
-  facet_wrap(~ ivy_plus_exchange) 
 
 ```
 
@@ -167,23 +158,15 @@ ggplot(data = ipeds_funnel) +
 
 ```{r facet_grid}
 
-ggplot(data = ipeds_funnel) +
-  geom_point(mapping = aes(x = applicants_total, y = yield_rate)) +
-  facet_grid(ivy_plus_exchange ~ sector_description) +
-  scale_x_log10()
-
 ```
 
 - Let's make one more adjustment before moving on.
 - Many of the points overlap. Do you remember how to add transparency to the points?
+- Copy and paste code from above.
 
 ```{r alpha}
 
-ggplot(data = ipeds_funnel) +
-  geom_point(mapping = aes(x = applicants_total, y = yield_rate), 
-             alpha = .25) +
-  facet_grid(ivy_plus_exchange ~ sector_description) +
-  scale_x_log10()
+
 
 ```
 
@@ -193,14 +176,10 @@ ggplot(data = ipeds_funnel) +
 
 - Back to original chart, where we plotted `applicants_total` against `yield_rate`. 
 - Seems to be a negative trend, but how do we formalize that?
-- How about another `geom`. Let's try `geom_smooth`
+- How about another `geom`? Let's try `geom_smooth`
 
 ```{r multiple_geoms}
 
-ggplot(data = ipeds_funnel) +
-  geom_point(mapping = aes(x = applicants_total, y = yield_rate)) +
-  geom_smooth(mapping = aes(x = applicants_total, y = yield_rate)) +
-  scale_x_log10()  
 
 ```
 
@@ -211,11 +190,6 @@ ggplot(data = ipeds_funnel) +
 
 ```{r local_global}
 
-ipeds_funnel %>% 
-  ggplot(mapping = aes(x = applicants_total, y = yield_rate)) +
-  geom_point() +
-  geom_smooth() +
-  scale_x_log10()  
 
 ```
 
@@ -232,10 +206,6 @@ ipeds_funnel %>%
     
 ```{r}
 
-ggplot(data = ipeds_funnel, aes(x = applicants_total, y = admitted_total, 
-                                color = sector_description)) +
-  geom_point() +
-  geom_smooth()
 
 ```
 

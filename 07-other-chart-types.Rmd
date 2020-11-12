@@ -39,12 +39,6 @@ library(ggthemes)
 
 ```{r}
 
-ipeds_distance %>% 
-  group_by(year, distance_type) %>% 
-  summarize(total = sum(headcount)) %>% 
-  ungroup() %>% 
-  ggplot(aes(x = year, y = total, color = distance_type)) +
-  geom_line() 
 ```
 
 ## Your Turn: Combining geoms to Add Points

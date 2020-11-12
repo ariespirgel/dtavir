@@ -42,8 +42,6 @@ library(vized)
 
 ```{r}
 
-ipeds_sat
-
 ```
 
 - Dataset for this section contains SAT scores for first-time in college students. Columns include:
@@ -62,9 +60,6 @@ ipeds_sat
 
 ```{r}
 
-select(ipeds_sat, unit_id, institution_name)
-
-select(ipeds_sat, unit_id, percentile, sat_ebrw)
 ```
 
 ### Your Turn: select()
@@ -85,11 +80,6 @@ select(ipeds_sat, percentile, sat_math)
 
 ```{r}
 
-select(ipeds_sat, institution_name:sat_ebrw) 
-
-select(ipeds_sat, contains("institution")) 
-
-select(ipeds_sat, starts_with("sat"))
 
 ```
 
@@ -113,7 +103,6 @@ select(ipeds_sat, ends_with("e"))
 
 ```{r}
 
-arrange(ipeds_sat, sat_ebrw)
 
 ```
 
@@ -121,15 +110,13 @@ arrange(ipeds_sat, sat_ebrw)
 
 ```{r}
 
-arrange(ipeds_sat, desc(sat_ebrw))
 
 ```
 
-- Now `arrange()` by multiple columns.
+- Now `arrange()` by multiple columns (`sat_math` & `sat_ebrw`).
 
 ```{r}
 
-arrange(ipeds_sat, sat_math, sat_ebrw)
 
 ```
 
@@ -140,7 +127,6 @@ arrange(ipeds_sat, sat_math, sat_ebrw)
 
 ```{r}
 
-arrange(ipeds_sat, percentile, desc(sat_math), desc(sat_ebrw))
 
 ```
 
@@ -162,13 +148,6 @@ arrange(ipeds_sat, percentile, desc(sat_math), desc(sat_ebrw))
 
 ```{r}
 
-1 > 5
-
-2 < 11
-
-x <- 9
-
-x == 9
 
 
 ```
@@ -177,9 +156,6 @@ x == 9
 
 ```{r}
 
-"apple" == "apple"
-
-"apple" == "banana"
 
 ```
 
@@ -208,7 +184,6 @@ filter(ipeds_sat, sat_ebrw < 500)
 
 ```{r}
 
-filter(ipeds_sat, sat_math == 800)
 
 ```
 
@@ -221,11 +196,11 @@ filter(ipeds_sat, sat_math == 800)
     - | (or)
     - ! (not)
     - () (group tests)
+- Let's filter for 75th percentile scores for Florida State University.
   
 
 ```{r}
 
-filter(ipeds_sat, institution_name == "Florida State University" & percentile == "75th")
 
 ```
 
@@ -237,7 +212,7 @@ filter(ipeds_sat, institution_name == "Florida State University" & percentile ==
 - How many schools meet all of these criteria?
 
 ```{r}
-filter(ipeds_sat, percentile == "25th" & sat_ebrw >= 720 & sat_math >= 720)
+
 ```
 
 
@@ -253,10 +228,7 @@ filter(ipeds_sat, percentile == "25th" & sat_ebrw >= 720 & sat_math >= 720)
 - Let's find the mean and standard deviation of `sat_ebrw`.
     
 ```{r}
-summarize(ipeds_sat,
-          mean_sat_ebrw = mean(sat_ebrw, na.rm = TRUE),
-          sd_sat_ebrw = sd(sat_ebrw, na.rm = TRUE)
-)
+
 
 ```
 
@@ -265,10 +237,8 @@ summarize(ipeds_sat,
 - Using `summarize()`, instead of finding mean values with the `mean()` function, I'd like you to use the `min()` and `max` functions to find the minimum and maximum values for `sat_math`.
 
 ```{r}
-summarize(ipeds_sat,
-          min_sat = min(sat_math, na.rm = TRUE),
-          max_sat = max(sat_math, na.rm = TRUE)
-)
+
+
 ```
 
 ## mutate()
@@ -291,7 +261,8 @@ mutate(ipeds_sat,
 
 ### Your Turn: mutate()
 
-- Using `mutate`,  I'd like you to create a  new column that computes the average of `sat_ebrw` and `sat_math`. Hint: When dividing by 2, careful with your parentheses!
+- Using `mutate`,  I'd like you to create a  new column that computes the average of `sat_ebrw` and `sat_math` (i.e., `sat_ebrw` plus `sat_math` divided by 2. 
+- Hint: When dividing by 2, careful with your parentheses!
     
 ```{r}
 
@@ -304,23 +275,11 @@ mutate(ipeds_sat,
 
 - What if you wanted create a new column with `mutate()` that is the average of `sat_math` and `sat_ebrw`, `arrange()` the results in descending order,  and `select()` relevant ones?
 - We can try two days based on what you already know, but in the next section we are going to learn a better way.
+    - Nesting
+    - Saving as objects
 - Let's talk about what's wrong with each.
 
 ```{r}
-
-# first way
-select(arrange(mutate(ipeds_sat,
-      sat_mean = (sat_math + sat_ebrw) / 2),
-desc(sat_mean)),
-institution_name, percentile, sat_mean)
-
-# second way
-my_data <- mutate(ipeds_sat,
-                  sat_mean = (sat_math + sat_ebrw) / 2) 
-
-my_data <- arrange(my_data, desc(sat_mean))
-
-select(my_data, institution_name, percentile, sat_mean)
 
 
 ```

@@ -22,16 +22,15 @@ library(vized)
 
 ```{r, eval = FALSE}
 
-ipeds_distance %>% 
-  View()
 
 ```
 
-- Brief Aside: When you aren't sure what a function does, use `?`. It works for datasets that are part of packages also.
+- Brief Aside: When you aren't sure what a function does, use `?`. It works for datasets that are part of packages also. 
+- Let's view the help page for `ipeds_distance`.
 
 ```{r}
 
-?ipeds_distance
+
 
 ```
 
@@ -39,8 +38,6 @@ ipeds_distance %>%
 
 ```{r}
 
-ipeds_distance %>% 
-  summarize(total = sum(headcount))
 
 ```
 
@@ -52,11 +49,7 @@ ipeds_distance %>%
 
 ```{r}
 
-ipeds_distance %>% 
-  group_by(distance_type, level) %>% 
-  summarize(total = sum(headcount)) %>% 
-  group_by(level) %>% 
-  mutate(total_by_level = sum(total))
+
 
 ```
 
@@ -71,9 +64,7 @@ ipeds_distance %>%
 - What is mean headcount for graduate, all_distance students?
 
 ```{r}
-ipeds_distance %>% 
-  group_by(level, distance_type) %>% 
-  summarize(mean_n = mean(headcount))
+
 ```
 
 ## Your Turn: Fill in the Blanks.

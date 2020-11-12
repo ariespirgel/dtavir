@@ -21,12 +21,11 @@ library(readxl)
 
 ## Code Together: Import Data
 
-```{r}
-# import CSV 
-sector_csv <- read_csv("data-processed/ipeds-sector.csv")
+- Read in data-processed/ipeds-sector.csv
+- Read in data-processed/ipeds-sector.xlsx
 
-# import Excel
-sector_excel <- read_excel("data-processed/ipeds-sector.xlsx")
+```{r}
+
 ```
 
 - Other import functions (may need to dowload other packages):
