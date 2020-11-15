@@ -28,7 +28,7 @@ library(readxl)
 
 ```
 
-- Other import functions (may need to dowload other packages):
+- Other import functions (may need to download other packages):
   - read_tsv: tab separated
   - read_delim: general delimited
   - read_fwf: fixed with

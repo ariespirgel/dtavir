@@ -20,8 +20,8 @@ library(vized)
 ```
 
 - About the vized R package and other data packages.
-- In this section, we will be exploring the `ipeds_funnel` dataset.
-- Let's view the dataset, of which there are many ways of doing so.
+- In this section, we will be exploring the `ipeds_funnel` data set.
+- Let's view the data set, of which there are many ways of doing so.
     - just print it.
     - `View()`
     - `glimpse()`
@@ -32,7 +32,7 @@ library(vized)
 
 ```
 
-For four-year public and private-not-for profit schools, the dataset contains the following columns:
+For four-year public and private-not-for profit schools, the data set contains the following columns:
     - unit_id
     - institution_name
     - sector_description
@@ -99,7 +99,7 @@ ggplot(data = <DATA>) +
 
 - General negative association, but a few schools on the upper right.
 - Do you have a hypothesis about those schools?
-    - View your dataset to determine what variables could test your hypothesis.
+    - View your data set to determine what variables could test your hypothesis.
     - BONUS: What visual elements could we add to test your hypothesis?
 - Let's copy and paste our code from above to try it out.
 

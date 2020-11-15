@@ -14,7 +14,7 @@ Prior to the workshop, please set up your computer by doing the following:
 
   1. Install the latest version of R from here: https://cran.r-project.org/bin/windows/base/
   2. Intall RStudio Desktop from here: https://rstudio.com/products/rstudio/download/#download
-  3. Open RStudio and in the console paste the following code and press Enter: **install.packages("devtools", "knitr", "scales", "ggthemes", "rmarkdown", "tidyverse")**
+  3. Open RStudio and in the console paste the following code and press Enter: **install.packages(c("devtools", "knitr", "scales", "ggthemes", "rmarkdown", "tidyverse"))**
   4. Once the packages from Step 3 are done installing, the `>` symbol will appear in the console. When that happens, paste the following code in the console and press Enter: **devtools::install_github("ariespirgel/vized")**
   5. Go to https://github.com/ariespirgel/dtavir and under the **Code** pulldown select **Download Zip**. Unzip the folder and save it to your desktop.
 

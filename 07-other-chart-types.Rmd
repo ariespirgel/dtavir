@@ -33,7 +33,7 @@ library(ggthemes)
 
 ```
 
-- Continuuing with the `ipeds_distance` dataset, let's create a summary of the data before plotting a line chart.
+- Continuing with the `ipeds_distance` dataset, let's create a summary of the data before plotting a line chart.
 - Use `group_by()` and `summarize()` to find total headcount by `year` and `distance_type`.
 - Now let's pipe that to a line chart with `year` on the x-axis, our new total column on the y-axis, and have the color of the line be represented by `distance_type`.
 
@@ -162,7 +162,7 @@ us_states %>%
 
 ## Conclusion
 
-- These prinicples can be used to build any type of chart. Always remember:
+- These principles can be used to build any type of chart. Always remember:
 
 ```{r template_2, eval = FALSE, echo = TRUE}
 

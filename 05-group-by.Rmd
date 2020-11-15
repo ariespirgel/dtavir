@@ -18,14 +18,14 @@ library(vized)
 
 ```
 
-- In this section we're going to explore the `ipeds_distance` dataset.
+- In this section we're going to explore the `ipeds_distance` data set.
 
 ```{r, eval = FALSE}
 
 
 ```
 
-- Brief Aside: When you aren't sure what a function does, use `?`. It works for datasets that are part of packages also. 
+- Brief Aside: When you aren't sure what a function does, use `?`. It works for data sets that are part of packages also. 
 - Let's view the help page for `ipeds_distance`.
 
 ```{r}
@@ -66,7 +66,7 @@ library(vized)
 
 ## Your Turn: Fill in the Blanks.
 
-- Now I'd like you to do the following on the `ipeds_distance` dataset:
+- Now I'd like you to do the following on the `ipeds_distance` data set:
     1. Use `group_by()` to group the data by `year`, `level`, and `distance_type`.
     2. Use `summarize()` to find the sum of `headcount`.
     3. Use `filter()` to get only the rows where `year` is equal to `2018`.

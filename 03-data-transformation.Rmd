@@ -24,7 +24,7 @@ output:
     - `mutate()`: Create new variables.
     - `summarize()`: Collapse many values down to a single summary.
 
-- 1st argument of each verb is dataframe, second is what to do with it.
+- 1st argument of each verb is data frame, second is what to do with it.
 
 ## Code Together: Load Packages & View Data
 
@@ -38,13 +38,13 @@ library(vized)
 ```
 
 
-- Let's take a look at the `ipeds_sat` dataset.
+- Let's take a look at the `ipeds_sat` data set.
 
 ```{r}
 
 ```
 
-- Dataset for this section contains SAT scores for first-time in college students. Columns include:
+- Data set for this section contains SAT scores for first-time in college students. Columns include:
     - unit_id
     - institution_name
     - percentile (25th or 75th)
@@ -64,7 +64,7 @@ library(vized)
 
 ### Your Turn: select()
 
-- Use select() to limit the `ipeds_sat` dataset to the `percentile` and `sat_math` columns.
+- Use select() to limit the `ipeds_sat` data set to the `percentile` and `sat_math` columns.
 
 ```{r}
 
@@ -193,7 +193,7 @@ filter(ipeds_sat, sat_ebrw < 500)
 
 - What about multiple logical criteria?
 - For example, `sat_ebrw` is greater than 600 AND `sat_math` is greater than 600?
-- Boolean oeprators include: 
+- Boolean operators include: 
     - & (and)
     - | (or)
     - ! (not)
@@ -211,7 +211,7 @@ filter(ipeds_sat, sat_ebrw < 500)
 
 ### Your Turn: filter() On Multiple Logical Criteria
 
-- Please `filter()` the `ipeds_sat` dataset for rows where `percentile` is 25th, `sat_ebrw` is greater than or equal to 720, and `sat_math` is greater than or equal to 720. 
+- Please `filter()` the `ipeds_sat` data set for rows where `percentile` is 25th, `sat_ebrw` is greater than or equal to 720, and `sat_math` is greater than or equal to 720. 
 - How many schools meet all of these criteria?
 
 ```{r}
@@ -225,7 +225,7 @@ filter(ipeds_sat, sat_ebrw < 500)
 ### Code Together: summarize()
 
 - `summarize()` computes tables of summaries.
-- Once again, first argument is dataframe.
+- Once again, first argument is data frame.
 - Answer questions such as "What is the...":
     - mean of x.
     - standard deviation of x.
@@ -239,7 +239,7 @@ filter(ipeds_sat, sat_ebrw < 500)
 
 ### Your Turn: summarize()
 
-- Using `summarize()`, instead of finding the mean and standard deviation with `mean()` and `sd()` , I'd like you to use the `min()` and `max()` functions to find the minimum and maximum values for `sat_math` in the `ipeds_sat` dataset. 
+- Using `summarize()`, instead of finding the mean and standard deviation with `mean()` and `sd()` , I'd like you to use the `min()` and `max()` functions to find the minimum and maximum values for `sat_math` in the `ipeds_sat` data set. 
 - In other words, use the functions to answer the questions (1) what is the highest value of `sat_math` and (2) what is the lowest value of `sat_math`?
 
 ```{r}
@@ -251,8 +251,8 @@ filter(ipeds_sat, sat_ebrw < 500)
 
 ### Code Together: mutate()
 
-- `mutate()` adds new variables to your dataset.
-- First argument is dataframe.
+- `mutate()` adds new variables to your data set.
+- First argument is data frame.
 - Let's do the following: 
     - Make a new column that is the sum of  of `sat_ebrw` and `sat_math`.
     - Make a new column that is the same as `institution_name` but all lowercase.
@@ -265,7 +265,7 @@ filter(ipeds_sat, sat_ebrw < 500)
 
 ### Your Turn: mutate()
 
-- Using `mutate`,  I'd like you to create a  new column in the `ipeds_sat` dataset that computes the average of `sat_ebrw` and `sat_math` for each row (i.e., `sat_ebrw` plus `sat_math` divided by 2). 
+- Using `mutate`,  I'd like you to create a  new column in the `ipeds_sat` data set that computes the average of `sat_ebrw` and `sat_math` for each row (i.e., `sat_ebrw` plus `sat_math` divided by 2). 
 - Hint: When dividing by 2, careful with your parentheses!
     
 ```{r}

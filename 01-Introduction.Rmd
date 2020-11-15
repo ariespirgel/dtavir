@@ -5,7 +5,7 @@ output:
     toc: true
 ---
 
-Hello! Please click open the "dtavir-workshop.Rproj" in the folder you downloaded before the workshop. Then, in the right pane of RStudio that this opened, click the file called "01-introuction.Rmd". If that worked, you are all set for now!
+Hello! Please click open the "dtavir-workshop.Rproj" in the folder you downloaded before the workshop. Then, in the right pane of RStudio that this opened, click the file called "01-introduction.Rmd". If that worked, you are all set for now!
 
 If you did not download anything yet, no problem. You can have the same experience working from the cloud. Go to https://rstudio.cloud/project/1916473 (be patient while it loads) and click "Save a Permanent Copy" at the top of your project. The new URL is personalized to you.
 
@@ -18,7 +18,7 @@ If you did not download anything yet, no problem. You can have the same experien
 
 - Why a workshop?
     - Help you get past initial barriers.
-    - Misplaced comma shouldnt keep you from learning R.
+    - Misplaced comma shouldn't keep you from learning R.
     - Provide foundation for going further on your own.
 - No coding experience required.
 - Will learn to transform and visualize data in R.
@@ -192,7 +192,7 @@ nchar("supercalifragilisticexpialidocious)
 - To use a package, you have to do the following:
     - `install.packages("pacakgename")`: this only has to be done once.
     - `library(pacakgename)`: every time you open a new session of R and want to use package.
-- This workshop focuses ont the tidyverse package, which is a collection of packages, including:
+- This workshop focuses on the tidyverse package, which is a collection of packages, including:
     - ggplot2
     - dplyr
     - ...
