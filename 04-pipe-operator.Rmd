@@ -7,7 +7,7 @@ output:
 
 # Introducing the Pipe
 
-- First, who remembers what each of the five `dplyr` verbs does?
+- First, let's review what each of the five `dplyr` verbs does:
     - `select()`
     - `arrange()`
     - `filter()`
@@ -15,8 +15,6 @@ output:
     - `summarize()`
 - What is the first argument of each?
 - When this happens, we can use the `%>%` (pipe) operator.
-
-
     
 ## Code Together: Load Packages
     
@@ -34,17 +32,11 @@ library(knitr)
 - At the end of last section, we wanted to do the following:
     1. Use `mutate()` to create a new column that computes the mean of `sat_ebrw` and `sat_math`.
     2. Use `arrange()` to sort the data from highest to lowest mean SAT.
-    3. Use `select()` to choose only certain columns.
+    3. Use `select()` to choose only `institution_name`, `percentile`, and newly calculated column.
 
 - Let's see how that would like with the %>%.
     
 ```{r}
-
-ipeds_sat %>% 
-  mutate(sat_mean = (sat_ebrw + sat_math) / 2) %>% 
-  arrange(desc(sat_mean)) %>% 
-  select(institution_name, percentile, sat_mean) %>% 
-  filter(percentile == "25th")
 
 
 ```
@@ -63,7 +55,7 @@ Now I'd like you to *use the pipe* on `ipeds_sat` to:
 1. Use `filter()` to limit only rows that are equal to "75th" for percentile.
 2. Continue the pipe to use `select()` to include only the columns `institution_name` and `sat_math`.
 
-Hint: The first line should be `ipeds_sat` and your result should contain two `%>%`.
+Hint: The first line should be `ipeds_sat` and your code should contain two `%>%`.
 
 ```{r}
 

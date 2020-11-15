@@ -38,7 +38,6 @@ library(vized)
 
 ```{r}
 
-
 ```
 
 ## Code Together: Introducing group_by()
@@ -49,8 +48,6 @@ library(vized)
 
 ```{r}
 
-
-
 ```
 
 - `group_by()` splits the results by the columns that you group by.
@@ -60,7 +57,7 @@ library(vized)
 
 ## Your Turn: group_by() & summarize()
 
-- Now I'd like you to take the `ipeds_distance` data set and combine with the pipe, `group_by()`, and `summarize()` to find the mean headcount by `level` and `distance_type`.
+- Now I'd like you to take the `ipeds_distance` data set and combine with the pipe, `group_by()`, and `summarize()` to find the mean `headcount` by `level` and `distance_type`.
 - What is mean headcount for graduate, all_distance students?
 
 ```{r}
@@ -74,11 +71,10 @@ library(vized)
     2. Use `summarize()` to find the sum of `headcount`.
     3. Use `filter()` to get only the rows where `year` is equal to `2018`.
     4. Use `group_by()` again to group the data by `level`.
-    5. Use `arrange()` to sort the data in descending order by
-    
+
 Don't forget to remove the underscores!
 
-What proportion of undergraduate students took all distance education courses in 2018?
+Looking at the code and the result, what proportion of undergraduate students took all distance education courses in 2018?
 
 ```{r, eval = FALSE}
 
@@ -89,9 +85,7 @@ ipeds_distance %>%
   group_by(_______) %>% 
   mutate(total_by_level = sum(total_headcount),
          prop = total_headcount / total_by_level) %>% 
-  ungroup() %>% 
-  arrange(desc(_______))
-
+  ungroup() 
 ```
 
 - Get in the habit of using `ungroup()`

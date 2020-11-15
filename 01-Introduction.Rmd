@@ -198,7 +198,6 @@ nchar("supercalifragilisticexpialidocious)
     - `install.packages("tidyverse")`
     - `library(tidyverse)`
 - Why the tidyverse?
-- Many ways to get to same result!
 
 ## Conclusion
 

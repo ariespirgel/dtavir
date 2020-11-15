@@ -64,8 +64,8 @@ For four-year public and private-not-for profit schools, the dataset contains th
 - Before addressing many problems of this chart, let's focus on the code itself.
 This code contains the most basic elements you will have in a chart, namely:
   1. Initialize plot with `ggplot()` and tell data your plotting, in this case `ipeds_funnel`. 
-  2. The geom you want to include, which describes the type of plot.
-  3. How the elements of your data are **aes**thically mapped to the chart. 
+  2. How the elements of your data are **aes**thically mapped to the chart. 
+  3. The geom you want to include, which describes the type of plot.
   4. Layers of the chart are added with the `+` sign.
 
 - The following template forms the base of the charts you will make in ggplot:
@@ -154,6 +154,7 @@ ggplot(data = ipeds_funnel) +
 - `facet_grid()` which creates a matrix of rows and columns of your data.
 - It is best used when you have two discrete variables.
 - Let's try it with `sector_description` and `ivy_plus_exchange`.
+- Copy and paste code from above from chart we just created.
 
 
 ```{r facet_grid}
@@ -162,7 +163,7 @@ ggplot(data = ipeds_funnel) +
 
 - Let's make one more adjustment before moving on.
 - Many of the points overlap. Do you remember how to add transparency to the points?
-- Copy and paste code from above.
+- Copy and paste code from above from chart we just created.
 
 ```{r alpha}
 

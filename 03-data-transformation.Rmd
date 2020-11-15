@@ -38,7 +38,7 @@ library(vized)
 ```
 
 
-- Let's take a look at the data.
+- Let's take a look at the `ipeds_sat` dataset.
 
 ```{r}
 
@@ -71,6 +71,8 @@ library(vized)
 select(ipeds_sat, percentile, sat_math)
 
 ```
+
+### Code Together: select() Helper Functions
 
 - `select()` contains many helper functions.
 - Let's check out a few of them.
@@ -180,7 +182,7 @@ filter(ipeds_sat, sat_ebrw < 500)
 
 ### Your Turn: filter() On One Criterion
 
-- Now I'd like you to use filter to find all of the rows where `sat_math` is 800.
+- Now I'd like you to use filter `ipeds_sat` to find all of the rows where `sat_math` is 800.
 
 ```{r}
 
@@ -196,6 +198,7 @@ filter(ipeds_sat, sat_ebrw < 500)
     - | (or)
     - ! (not)
     - () (group tests)
+- Results of multiple tests.
 - Let's filter for 75th percentile scores for Florida State University.
   
 
@@ -208,10 +211,11 @@ filter(ipeds_sat, sat_ebrw < 500)
 
 ### Your Turn: filter() On Multiple Logical Criteria
 
-- Please `filter()` for rows where `percentile` is 25th, `sat_ebrw` is greater than or equal to 720, and `sat_math` is greater than or equal to 720. 
+- Please `filter()` the `ipeds_sat` dataset for rows where `percentile` is 25th, `sat_ebrw` is greater than or equal to 720, and `sat_math` is greater than or equal to 720. 
 - How many schools meet all of these criteria?
 
 ```{r}
+
 
 ```
 
@@ -221,6 +225,7 @@ filter(ipeds_sat, sat_ebrw < 500)
 ### Code Together: summarize()
 
 - `summarize()` computes tables of summaries.
+- Once again, first argument is dataframe.
 - Answer questions such as "What is the...":
     - mean of x.
     - standard deviation of x.
@@ -234,7 +239,8 @@ filter(ipeds_sat, sat_ebrw < 500)
 
 ### Your Turn: summarize()
 
-- Using `summarize()`, instead of finding mean values with the `mean()` function, I'd like you to use the `min()` and `max` functions to find the minimum and maximum values for `sat_math`.
+- Using `summarize()`, instead of finding the mean and standard deviation with `mean()` and `sd()` , I'd like you to use the `min()` and `max()` functions to find the minimum and maximum values for `sat_math` in the `ipeds_sat` dataset. 
+- In other words, use the functions to answer the questions (1) what is the highest value of `sat_math` and (2) what is the lowest value of `sat_math`?
 
 ```{r}
 
@@ -246,28 +252,25 @@ filter(ipeds_sat, sat_ebrw < 500)
 ### Code Together: mutate()
 
 - `mutate()` adds new variables to your dataset.
+- First argument is dataframe.
 - Let's do the following: 
     - Make a new column that is the sum of  of `sat_ebrw` and `sat_math`.
     - Make a new column that is the same as `institution_name` but all lowercase.
 
 ```{r}
 
-mutate(ipeds_sat, 
-       sat_total = sat_ebrw + sat_math,
-       name_lower = tolower(institution_name))
 
 ```
 
 
 ### Your Turn: mutate()
 
-- Using `mutate`,  I'd like you to create a  new column that computes the average of `sat_ebrw` and `sat_math` (i.e., `sat_ebrw` plus `sat_math` divided by 2. 
+- Using `mutate`,  I'd like you to create a  new column in the `ipeds_sat` dataset that computes the average of `sat_ebrw` and `sat_math` for each row (i.e., `sat_ebrw` plus `sat_math` divided by 2). 
 - Hint: When dividing by 2, careful with your parentheses!
     
 ```{r}
 
-mutate(ipeds_sat,
-       sat_mean = (sat_math + sat_ebrw) / 2) 
+
 
 ```
 
@@ -283,6 +286,8 @@ mutate(ipeds_sat,
 
 
 ```
+
+- Next up, how do get the same result with easier to read code!
 
 ## Your Turn: Navigate to Next Section
 
