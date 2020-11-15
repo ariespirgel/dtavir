@@ -7,6 +7,8 @@ output:
 
 Hello! Please click open the "dtavir-workshop.Rproj" in the folder you downloaded before the workshop. Then, in the right pane of RStudio that this opened, click the file called "01-introuction.Rmd". If that worked, you are all set for now!
 
+If you did not download anything yet, no problem. You can have the same experience working from the cloud. Go to https://rstudio.cloud/project/1916473 (be patient while it loads) and click "Save a Permanent Copy" at the top of your project. The new URL is personalized to you.
+
 # Welcome
 
 - About you
