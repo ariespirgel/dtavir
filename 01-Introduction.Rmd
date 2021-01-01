@@ -47,6 +47,7 @@ library(vized)
 
 ## Code Together: Run code below with Ctrl + Enter
 
+- Results appear below the gray chunk.
 
 ```{r math}
 
@@ -91,7 +92,7 @@ ggplot(data = ipeds_coordinates) +
 - You create text:
     - Can be reused.
     - Can be read by humans.
-- Scaleable.
+- Scalable.
 - No copying and pasting from one software to another.
 - It's free!
 
