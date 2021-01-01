@@ -35,6 +35,9 @@ library(knitr)
     3. Use `select()` to choose only `institution_name`, `percentile`, and newly calculated column.
 
 - Let's see how that would like with the %>%.
+- The pipe can be typed out manually, or, with shortcuts:
+    - Mac: Cmd+Shift+M
+    - Windows / Linx: Ctrl+Shift+M
     
 ```{r}
 
@@ -43,10 +46,6 @@ library(knitr)
 
 - Think of the `%>%` as meaning "next do this...".
 - We could continue as much as we'd like, for example, by then filtering for only 25th percentile scores.   
-- The pipe can be typed out manually, or, with shortcuts:
-    - Mac: Cmd+Shift+M
-    - Windows / Linx: Ctrl+Shift+M
-- Useful with `View()` during exploration.
 
 ## Your Turn: Pipe Syntax
     

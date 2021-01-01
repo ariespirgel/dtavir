@@ -43,9 +43,16 @@ library(ggthemes)
 
 ## Your Turn: Combining geoms to Add Points
 
-- In the space below, take the chart we just created, use `geom_point()` to add points to the lines that represent each year. Hint: You will be using multiple geoms.
+- The chunk below contains the code for the chart we just created. Now use `geom_point()` to add points to the lines that represent each year. Hint: You will be using multiple geoms.
 
 ```{r}
+
+ipeds_distance %>% 
+  group_by(year, distance_type) %>% 
+  summarize(total = sum(headcount)) %>% 
+  ungroup() %>% 
+  ggplot(aes(x = year, y = total, color = distance_type)) +
+  geom_line()
 
 ```
 
@@ -80,7 +87,7 @@ include_graphics("images/distance-sector-facet.jpg")
   
 ```
 
-- Now, I'd like you to fill in the blanks below to replicate the chart above. Make sure to completely remove all of the underscores.
+- Now, I'd like you to fill in the blanks below to replicate the chart above. Make sure to completely remove all of the blanks.
 - Tip: If you are stuck, you might find it help to run lines of code as you complete them.
 - Any guesses as to what ` filter(str_detect(sector_description, "4-year"))` does?
 

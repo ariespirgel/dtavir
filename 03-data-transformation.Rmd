@@ -14,7 +14,7 @@ output:
     - min / max
     - standard deviations
     - ...
-- ggplot (can) do some data transformation, but better to do it separately.
+- ggplot can do some data transformation, but better to do it separately.
 - The tidyverse package for data transformation is dplyr.
 
 - dplyr has five primary verbs:
@@ -124,7 +124,7 @@ select(ipeds_sat, ends_with("e"))
 
 ### Your Turn: arrange()
 
-- Now I'd like you to arrange by `percentile` and `sat_math` (highest to lowest), `sat_ebrw` (highest to lowest).
+- Now I'd like you to arrange by `percentile`, `sat_math` (highest to lowest), and `sat_ebrw` (highest to lowest).
 - Which school is on top?
 
 ```{r}
@@ -241,6 +241,7 @@ filter(ipeds_sat, sat_ebrw < 500)
 
 - Using `summarize()`, instead of finding the mean and standard deviation with `mean()` and `sd()` , I'd like you to use the `min()` and `max()` functions to find the minimum and maximum values for `sat_math` in the `ipeds_sat` data set. 
 - In other words, use the functions to answer the questions (1) what is the highest value of `sat_math` and (2) what is the lowest value of `sat_math`?
+- Don't forget about `na.rm = TRUE`.
 
 ```{r}
 

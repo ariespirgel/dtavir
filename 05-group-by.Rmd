@@ -59,6 +59,7 @@ library(vized)
 
 - Now I'd like you to take the `ipeds_distance` data set and combine with the pipe, `group_by()`, and `summarize()` to find the mean `headcount` by `level` and `distance_type`.
 - What is mean headcount for graduate, all_distance students?
+- Hint: You should be using the function `mean()` to calculate mean.
 
 ```{r}
 
