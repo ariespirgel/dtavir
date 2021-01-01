@@ -53,7 +53,6 @@ For four-year public and private-not-for profit schools, the data set contains t
 
 ```{r base_chart}
 
-
 ```
 
 - Troubleshooting if it didn't work
@@ -85,13 +84,15 @@ ggplot(data = <DATA>) +
 
 ```{r log_scale}
 
+ggplot(data = ipeds_funnel, mapping = aes(x = applicants_total, y = yield_rate)) +
+  geom_point()
 
 ```
 
 ### Pop Quiz: How Would You Log Transform the Y-Axis?
 
 - Any guesses as to how we would transform the y-axis to a log scale? Try it out and see if it works.
-- Going forward, it makes the most sense to leave just the axis on log scale, so let's do that.
+- Going forward, it makes the most sense to leave just the x-axis on log scale, so let's do that.
 
 ## Finding Patterns in Data
 
@@ -101,10 +102,12 @@ ggplot(data = <DATA>) +
 - Do you have a hypothesis about those schools?
     - View your data set to determine what variables could test your hypothesis.
     - BONUS: What visual elements could we add to test your hypothesis?
-- Let's copy and paste our code from above to try it out.
 
 ```{r color_aes}
 
+ggplot(data = ipeds_funnel, mapping = aes(x = applicants_total, y = yield_rate)) +
+  geom_point() +
+  scale_x_log10()
 
 ```
 
@@ -119,9 +122,8 @@ ggplot(data = <DATA>) +
 
 ```{r aes}
 
-ggplot(data = ipeds_funnel) +
-  geom_point(mapping = aes(x = applicants_total, y = yield_rate, 
-                           color = ivy_plus_exchange)) +
+ggplot(data = ipeds_funnel, mapping = aes(x = applicants_total, y = yield_rate)) +
+  geom_point() +
   scale_x_log10()
 
 ```
@@ -131,11 +133,12 @@ ggplot(data = ipeds_funnel) +
 - Aesthetics are not the only way to help detect patterns. 
 - Using the facet functions, you can create small multiples.
 - Let's do that with `sector_description` to see how IvyPlus schools are distributed across public and private institutions.
-- Copy and paste code from above.
-
 
 ```{r facet_wrap}
 
+ggplot(data = ipeds_funnel, mapping = aes(x = applicants_total, y = yield_rate)) +
+  geom_point() +
+  scale_x_log10()
 
 ```
 
@@ -143,8 +146,11 @@ ggplot(data = ipeds_funnel) +
 
 - Repeat the chart above, except this time facet your chart by `ivy_plus_exhange` instead of `sector_description`.
 
-```{r}
+```{r facet_wrap_your_turn}
 
+ggplot(data = ipeds_funnel, mapping = aes(x = applicants_total, y = yield_rate)) +
+  geom_point() +
+  scale_x_log10()
 
 ```
 
@@ -154,10 +160,12 @@ ggplot(data = ipeds_funnel) +
 - `facet_grid()` which creates a matrix of rows and columns of your data.
 - It is best used when you have two discrete variables.
 - Let's try it with `sector_description` and `ivy_plus_exchange`.
-- Copy and paste code from above from chart we just created.
-
 
 ```{r facet_grid}
+
+ggplot(data = ipeds_funnel, mapping = aes(x = applicants_total, y = yield_rate)) +
+  geom_point() +
+  scale_x_log10()
 
 ```
 
@@ -176,16 +184,18 @@ ggplot(data = ipeds_funnel) +
 ## Code Together: Multiple geoms and Local vs. Global
 
 - Back to original chart, where we plotted `applicants_total` against `yield_rate`. 
-- Seems to be a negative trend, but how do we formalize that?
+- Seems to be a negative trend, but how can we better detect that?
 - How about another `geom`? Let's try `geom_smooth`
 
 ```{r multiple_geoms}
 
+ggplot() +
+  geom_point(data = ipeds_funnel, mapping = aes(x = applicants_total, y = yield_rate)) +
+  scale_x_log10()
 
 ```
 
 - Confirms negative trend.
-- Gets pulled up by elite institutions.
 - Looking at the code that creates this chart, notice the redundancy?
 - What happens if we put everything inside of `ggplot()` instead?
 
